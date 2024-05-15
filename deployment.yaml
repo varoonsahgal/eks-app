@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: php-app
+  template:
+    metadata:
+      labels:
+        app: php-app
+    spec:
+      containers:
+        - name: php-pod
+          image: 962804699607.dkr.ecr.us-west-2.amazonaws.com/mk-c2-img:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
